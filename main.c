@@ -215,44 +215,54 @@ void silent_list_delete ()
 	return;
 }
 
+void append_and_search (int a, int b)
+{
+    clock_t begin, end;
+        double time_spent;
+
+        begin = clock();
+        int i;
+
+        for (i = 1; i <= a; i++) {
+
+            Node *newnode = malloc(sizeof(Node));
+            newnode->data = i;
+
+            LL_APPEND(mainlist, newnode);
+        }
+
+        int j = 1;
+        Node *elt;
+        LL_FOREACH(mainlist, elt) {
+
+            if (elt->data == b) {
+                printf("\nNode found in position %d.\n", j);
+                break;
+            }
+
+            j++;
+        }
+
+        if (i-1 == a) {
+            printf("\nSearched value %d is not in the list.\n", b);
+        }
+
+        end = clock();
+        time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+
+        printf("\n%.5f seconds spent.\n", time_spent);
+}
+
 int main (int argc, char* argv[])
 {
+
     if (argc < 3) {
         printf("\nERROR: Too few arguments.\nAt least 2 arguments expected.\n");
         return 1;
 
     }
 
-    clock_t begin, end;
-    double time_spent;
-
-    begin = clock();
-    int i;
-
-    for (i = 1; i <= atoi(argv[1]); i++) {
-
-        Node *newnode = malloc(sizeof(Node));
-        newnode->data = i;
-
-        LL_APPEND(mainlist, newnode);
-    }
-
-    i = 1;
-    Node *elt;
-    LL_FOREACH(mainlist, elt) {
-
-        if (elt->data == atoi(argv[2])) {
-            printf("\nNode found in position %d.\n", i);
-            break;
-        }
-
-        i++;
-    }
-
-    end = clock();
-    time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
-
-    printf("%.5f seconds spent. %d %d\n", time_spent, atoi(argv[1]), atoi(argv[2]));
+    append_and_search(atoi(argv[1]), atoi(argv[2]));
 
 	int user_menu_choice = 0;
 	int exit_request = 0;
