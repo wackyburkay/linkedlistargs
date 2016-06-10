@@ -243,6 +243,7 @@ int main (int argc, char* argv[])
 
         if (elt->data == atoi(argv[2])) {
             printf("\nNode found in position %d.\n", i);
+            break;
         }
 
         i++;
