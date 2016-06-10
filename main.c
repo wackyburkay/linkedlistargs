@@ -243,7 +243,7 @@ void append_and_search (int a, int b)
             j++;
         }
 
-        if (i-1 == a) {
+        if (j-1 == a) {
             printf("\nSearched value %d is not in the list.\n", b);
         }
 
